@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"><?define EmotesEverywhere_TargetDir=$(var.EmotesEverywhere.TargetDir)?>
+	<Product Id="*" Name="Emotes Everywhere" Language="1033" Version="1.0.0.0" Manufacturer="Kellphy" UpgradeCode="809a26d6-edcf-4c0c-b001-106106ddda84">
+		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+
+		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+    <MediaTemplate EmbedCab="yes" />
+    <WixVariable Id="WixUILicenseRtf" Value="License.rtf" />
+
+		<Feature Id="ProductFeature" Title="Emotes Everywhere" Level="1">
+			<ComponentGroupRef Id="ProductComponents" />
+		</Feature>
+
+    <Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER" />
+    <UI>
+      <UIRef Id="WixUI_InstallDir" />
+      <Publish Dialog="InstallDirDlg" Control="Back" Event="NewDialog" Value="WelcomeDlg"> Test2 </Publish>
+    </UI>
+
+    <WixVariable Id="WixUIBannerBmp" Value="WixBanner58.bmp" />
+    <WixVariable Id="WixUIDialogBmp" Value="WixBanner312.bmp" />
+  
+  </Product>
+  
+	<Fragment>
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder">
+				<Directory Id="INSTALLFOLDER" Name="Emotes Everywhere" />
+			</Directory>
+      <Directory Id="DesktopFolder" Name="Desktop" />
+    </Directory>
+	</Fragment>
+
+	<Fragment>
+		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+			<!-- TODO: Remove the comments around this Component element and the ComponentRef below in order to add resources to this installer. -->
+			<!-- <Component Id="ProductComponent"> -->
+				<!-- TODO: Insert files, registry keys, and other resources here. -->
+			<!-- </Component> -->
+			<!--<Component Id="EmotesEverywhere.exe" Guid="58c34f36-7488-4454-8fbc-b1b9286897e3">
+			  <File Id="EmotesEverywhere.exe" Name="EmotesEverywhere.exe" Source="$(var.EmotesEverywhere_TargetDir)EmotesEverywhere.exe" />
+			</Component>-->
+      <Component Id="ComponentShortcut" Guid="*">
+        <File Id="FileShortcut" KeyPath="yes" Source="$(var.EmotesEverywhere_TargetDir)EmotesEverywhere.exe">
+          <Shortcut Id="DesktopShortcut" Directory="DesktopFolder" Name="Emotes Everywhere" Description="by Kellphy" WorkingDirectory="INSTALLFOLDER" Icon="EmotesEverywhere.exe" IconIndex="0" Advertise="yes">
+            <Icon Id="EmotesEverywhere.exe" SourceFile="$(var.EmotesEverywhere_TargetDir)EmotesEverywhere.exe" />
+          </Shortcut>
+        </File>
+      </Component>
+			<Component Id="EmotesEverywhere.exe.config" Guid="1c92c7b9-e7aa-4e19-a6fc-28e67885381d">
+			  <File Id="EmotesEverywhere.exe.config" Name="EmotesEverywhere.exe.config" Source="$(var.EmotesEverywhere_TargetDir)EmotesEverywhere.exe.config" />
+			</Component>
+			<Component Id="System.Buffers.dll" Guid="698ef0ca-f228-4bdd-b1db-51796567716e">
+			  <File Id="System.Buffers.dll" Name="System.Buffers.dll" Source="$(var.EmotesEverywhere_TargetDir)System.Buffers.dll" />
+			</Component>
+			<Component Id="System.Runtime.CompilerServices.Unsafe.dll" Guid="f2feb469-1b47-4cbc-87ca-8e5b08e3e5df">
+			  <File Id="System.Runtime.CompilerServices.Unsafe.dll" Name="System.Runtime.CompilerServices.Unsafe.dll" Source="$(var.EmotesEverywhere_TargetDir)System.Runtime.CompilerServices.Unsafe.dll" />
+			</Component>
+			<Component Id="System.Numerics.Vectors.dll" Guid="03779c28-f379-4f2e-a20a-7a5469980082">
+			  <File Id="System.Numerics.Vectors.dll" Name="System.Numerics.Vectors.dll" Source="$(var.EmotesEverywhere_TargetDir)System.Numerics.Vectors.dll" />
+			</Component>
+			<Component Id="SixLabors.ImageSharp.dll" Guid="8e8faccf-b050-448c-a931-f6bcacb04810">
+			  <File Id="SixLabors.ImageSharp.dll" Name="SixLabors.ImageSharp.dll" Source="$(var.EmotesEverywhere_TargetDir)SixLabors.ImageSharp.dll" />
+			</Component>
+			<Component Id="System.Memory.dll" Guid="5437e1bc-c24a-4ce8-9e5d-e01fac277401">
+			  <File Id="System.Memory.dll" Name="System.Memory.dll" Source="$(var.EmotesEverywhere_TargetDir)System.Memory.dll" />
+			</Component>
+    </ComponentGroup>
+	</Fragment>
+</Wix>

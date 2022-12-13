@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WixLocalization Culture="en-us" xmlns="http://schemas.microsoft.com/wix/2006/localization">
+  <String Id="InstallDirDlgFolderLabel">Please install Emotes Everywhere in an empty folder.
+If there is no empty folder in your selected directory, please add its name at the end of the selected path.</String>
+</WixLocalization>
